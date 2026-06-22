@@ -19,25 +19,6 @@ function HomePage() {
 
     loadMovies();
   }, []);
-useEffect(() => {
-  console.log("HomePage mounted");
-
-  const loadMovies = async () => {
-    try {
-      console.log("Loading movies...");
-
-      const popularMovies = await getPopularMovies();
-
-      console.log("Movies received:", popularMovies);
-
-      setMovies(popularMovies);
-    } catch (error) {
-      console.error("Movie load error:", error);
-    }
-  };
-
-  loadMovies();
-}, []);
   const handleSearch = async (e) => {
     e.preventDefault();
 
@@ -52,7 +33,7 @@ useEffect(() => {
 
     setSearchQuery("");
   };
-  console.log("Movies state:", movies);
+ 
 
   return (
     <div className="home">
