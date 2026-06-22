@@ -19,6 +19,25 @@ function HomePage() {
 
     loadMovies();
   }, []);
+  useEffect(() => {
+  console.log("HomePage mounted");
+
+  const loadMovies = async () => {
+    try {
+      console.log("Loading movies...");
+
+      const popularMovies = await getPopularMovies();
+
+      console.log("Movies received:", popularMovies);
+
+      setMovies(popularMovies);
+    } catch (error) {
+      console.error("Movie load error:", error);
+    }
+  };
+
+  loadMovies();
+}, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -34,6 +53,7 @@ function HomePage() {
 
     setSearchQuery("");
   };
+  console.log("Movies state:", movies);
 
   return (
     <div className="home">
@@ -50,10 +70,6 @@ function HomePage() {
           Search
         </button>
       </form>
-
-      <div style={{ color: "white", padding: "10px" }}>
-        Movies loaded: {movies.length}
-      </div>
 
       <div className="movies-grid">
         {movies.map((movie) => (
