@@ -19,6 +19,7 @@ function HomePage() {
 
     loadMovies();
   }, []);
+
   const handleSearch = async (e) => {
     e.preventDefault();
 
@@ -33,29 +34,37 @@ function HomePage() {
 
     setSearchQuery("");
   };
- 
-return (
-  <div className="home">
-    <form onSubmit={handleSearch} className="search-form">
-      ...
-    </form>
 
-    <div style={{ color: "white", padding: "10px" }}>
-      Movies loaded: {movies.length}
-    </div>
-
-    <div className="movies-grid">
-      {movies.map((movie) => (
-        <MovieCard
-          movie={movie}
-          key={movie.id}
+  return (
+    <div className="home">
+      <form onSubmit={handleSearch} className="search-form">
+        <input
+          type="text"
+          placeholder="Search for movies..."
+          className="search-input"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-      ))}
-    </div>
-  </div>
-);
-  );
 
+        <button type="submit" className="search-button">
+          Search
+        </button>
+      </form>
+
+      <div style={{ color: "white", padding: "10px" }}>
+        Movies loaded: {movies.length}
+      </div>
+
+      <div className="movies-grid">
+        {movies.map((movie) => (
+          <MovieCard
+            movie={movie}
+            key={movie.id}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default HomePage;
