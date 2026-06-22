@@ -61,6 +61,18 @@ function HomePage() {
       </div>
     </div>
   );
+  <div style={{ color: "white", padding: "10px" }}>
+  Movies loaded: {movies.length}
+</div>
+
+<div className="movies-grid">
+  {movies.map((movie) => (
+    <MovieCard
+      movie={movie}
+      key={movie.id}
+    />
+  ))}
+</div>
 }
 
 export default HomePage;
